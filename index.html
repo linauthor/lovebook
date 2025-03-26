@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love: The Truths, The Myths, The Lessons | By Lin</title>
+    <style>
+        /* Base styles and resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #1e2838;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #e84393;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .flex {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            background-color: rgba(30, 40, 56, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e84393;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(30, 40, 56, 0.8), rgba(30, 40, 56, 0.8)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart-icon {
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .book-cover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .book-cover:hover {
+            transform: scale(1.03);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #e84393;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #d63384;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(232, 67, 147, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            background-color: #25303f;
+        }
+
+        .about-content {
+            max-width: 800px;
+        }
+
+        /* Chapters Section */
+        .chapters {
+            background-color: #1e2838;
+        }
+
+        .chapter-card {
+            background-color: #25303f;
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .chapter-title {
+            color: #e84393;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #25303f;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: #1e2838;
+            border-radius: 10px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 5rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.1;
+            color: #e84393;
+        }
+
+        .reader-name {
+            font-weight: 700;
+            color: #e84393;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        /* Author Section */
+        .author {
+            background-color: #1e2838;
+        }
+
+        .author-pic {
+            border-radius: 50%;
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border: 5px solid #e84393;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background-color: #25303f;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        input[type="email"] {
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            flex-grow: 1;
+            min-width: 250px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #182331;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .flex {
+                flex-direction: column;
+            }
+
+            .hero {
+                padding-top: 100px;
+                height: auto;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .book-details {
+            max-width: 600px;
+        }
+
+        /* More styles */
+        .text-highlight {
+            color: #e84393;
+            font-weight: 700;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #e84393, #ff9a9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .retailers {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .retailer-logo {
+            height: 40px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .retailer-logo:hover {
+            opacity: 1;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <!-- Font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container flex justify-between items-center">
+            <div class="logo">
+                <h3>LIN</h3>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#author">Author</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="heart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#e84393">
+                <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
+            </svg>
+        </div>
+        <div class="container flex items-center">
+            <div class="book-details">
+                <h1>LOVE<br><span class="gradient-bg">THE TRUTHS, THE MYTHS, THE LESSONS</span></h1>
+                <p class="subtitle">Everything I Thought Love Was—And What I Know Now</p>
+                <p>A deeply personal journey through love's complex landscape, from early infatuations to the transformative power of self-acceptance.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Order Now</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+                <div class="retailers">
+                    <img src="/api/placeholder/120/40" alt="Amazon" class="retailer-logo">
+                    <img src="/api/placeholder/120/40" alt="Barnes & Noble" class="retailer-logo">
+                    <img src="/api/placeholder/120/40" alt="Apple Books" class="retailer-logo">
+                    <img src="/api/placeholder/120/40" alt="Bookshop" class="retailer-logo">
+                </div>
+            </div>
+            <div class="book-image">
+                <img src="/api/placeholder/400/600" alt="Love: The Truths, The Myths, The Lessons Book Cover" class="book-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>About the Book</h2>
+                <p class="subtitle">A journey through love's evolution in three parts</p>
+            </div>
+            <div class="about-content fade-in">
+                <p>"For my sons—In the wreckage of lost love, I found the greatest treasures of my life. You are the light that emerged from darkness, the hope that rose from despair, the joy that blossomed from pain..."</p>
+                
+                <p>In <span class="text-highlight">Love: The Truths, The Myths, The Lessons</span>, Lin explores the complex journey of love through different stages of life. Starting with the innocent infatuations of youth, through the complexities of mature relationships, and finally arriving at the profound discovery of self-love, this memoir offers both personal revelation and universal wisdom.</p>
+                
+                <p>This isn't just a book about romantic love, but a comprehensive exploration of how our understanding of connection evolves throughout our lives. Lin's raw honesty about her own struggles, heartbreaks, and ultimate healing creates a narrative that is both deeply personal and universally relatable.</p>
+                
+                <p>Whether you're navigating early relationships, healing from heartbreak, or seeking a more authentic connection with yourself, this book offers insights, comfort, and practical wisdom for every stage of the journey.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Pre-Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapters Section -->
+    <section id="chapters" class="chapters section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Inside the Book</h2>
+                <p class="subtitle">A roadmap through love's complex landscape</p>
+            </div>
+            
+            <div class="chapters-grid">
+                <!-- Part 1 -->
+                <div class="chapter-card fade-in">
+                    <h3>PART I: THE AWAKENING HEART</h3>
+                    <p class="chapter-description">The journey of discovering love in youth</p>
+                    <ul>
+                        <li><strong>First Impressions:</strong> The intensity of early infatuations</li>
+                        <li><strong>Innocent Connections:</strong> Building relationships without life's complications</li>
+                        <li><strong>Learning the Language:</strong> Understanding how to express affection</li>
+                        <li><strong>Heartbreak's Lessons:</strong> The growth that comes from young disappointments</li>
+                    </ul>
+                    <p class="chapter-quote">"These weren't childish attributes to outgrow but essential aspects of our humanity that await reclamation."</p>
+                </div>
+                
+                <!-- Part 2 -->
+                <div class="chapter-card fade-in">
+                    <h3>PART II: LOVE IN FULL BLOOM</h3>
+                    <p class="chapter-description">The complexities and richness of mature relationships</p>
+                    <ul>
+                        <li><strong>Weathered Bonds:</strong> Building relationships that withstand life's challenges</li>
+                        <li><strong>The Balance of Power:</strong> Negotiating autonomy and togetherness</li>
+                        <li><strong>Love Beyond Romance:</strong> The many dimensions of adult partnerships</li>
+                        <li><strong>Creating Legacy:</strong> Building family and meaning as a unit</li>
+                    </ul>
+                    <p class="chapter-quote">"What began as simple appreciation for the convenience of digital communication has evolved into a deeper understanding of its proper place in a fully lived life."</p>
+                </div>
+                
+                <!-- Part 3 -->
+                <div class="chapter-card fade-in">
+                    <h3>PART III: THE RETURN TO SELF</h3>
+                    <p class="chapter-description">The journey toward inner wholeness and self-acceptance</p>
+                    <ul>
+                        <li><strong>The Mirror's Truth:</strong> Confronting who we truly are</li>
+                        <li><strong>Boundaries as Freedom:</strong> Learning to honor your own needs</li>
+                        <li><strong>The Art of Solitude:</strong> Finding comfort and strength in yourself</li>
+                        <li><strong>Radical Acceptance:</strong> Embracing all aspects of your being</li>
+                    </ul>
+                    <p class="chapter-quote">"What if nothing about you needs to be fixed? What if wholeness isn't about perfection but about integration of all that you are?"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Reader Experiences</h2>
+                <p class="subtitle">How Love: The Truths, The Myths, The Lessons is resonating</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>I've highlighted nearly every page of this book. Lin's honesty about her journey through self-criticism to self-compassion gave me permission to be gentler with myself. This isn't just about romantic love—it's about the most important relationship we'll ever have: the one with ourselves.</p>
+                    <span class="reader-name">— Sarah K.</span>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>The chapter on boundaries as freedom was exactly what I needed. For years I've equated having no boundaries with being loving. This book helped me see how setting healthy limits actually creates space for more authentic connection.</p>
+                    <span class="reader-name">— Michael T.</span>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card fade-in">
+                    <div class="quote-mark">"</div>
+                    <p>I read this book in the aftermath of a difficult breakup, and it was like having a wise friend guide me through the pain toward something better. Lin doesn't offer empty platitudes—she offers hard-earned wisdom that actually helps you heal.</p>
+                    <span class="reader-name">— Jessica M.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="author" class="author section">
+        <div class="container flex items-center">
+            <div class="author-image fade-in">
+                <img src="/api/placeholder/350/350" alt="Author Lin" class="author-pic">
+            </div>
+            <div class="author-bio fade-in">
+                <h2>About the Author</h2>
+                <p>Lin is a writer, speaker, and advocate for authentic self-discovery. After spending years in search of external validation through relationships, she began a journey inward that transformed her understanding of love, connection, and personal worth.</p>
+                
+                <p>Drawing from both personal experience and extensive research on attachment theory, self-compassion, and relationship dynamics, Lin offers insights that bridge the personal and the universal. Her writing has been featured in numerous publications, and she speaks regularly on topics related to emotional well-being and authentic relationships.</p>
+                
+                <p>"Love: The Truths, The Myths, The Lessons" is her first book, born from the desire to help others navigate the complex landscape of love with greater awareness and self-compassion.</p>
+                
+                <p>Lin lives with her two sons, who continue to be her greatest teachers about the transformative power of love.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="contact" class="newsletter section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Join the Journey</h2>
+                <p class="subtitle">Get reflections, updates, and exclusive content</p>
+            </div>
+            
+            <div class="newsletter-content fade-in">
+                <p>Sign up to receive Lin's monthly newsletter featuring:</p>
+                <ul>
+                    <li>Unpublished passages and reflections</li>
+                    <li>Reading guides and discussion questions</li>
+                    <li>Announcements about events and future projects</li>
+                    <li>Curated resources for your own journey of self-discovery</li>
+                </ul>
+                
+                <div class="form-group">
+                    <input type="email" placeholder="Your email address">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+                <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 1rem;">You can unsubscribe at any time. Your information will never be shared.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <h3>LIN</h3>
+            </div>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-goodreads"></i></a>
+            </div>
+            
+            <p>For speaking engagements, interviews, and other inquiries: <a href="mailto:contact@linauthor.com" style="color: #e84393; text-decoration: none;">contact@linauthor.com</a></p>
+            
+            <p class="copyright">© 2025 Lin. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '1rem 0';
+                header.style.backgroundColor = 'rgba(30, 40, 56, 0.95)';
+            } else {
+                header.style.padding = '1.5rem 0';
+                header.style.backgroundColor = 'rgba(30, 40, 56, 0.9)';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.classList.add('appear');
+                }
+            });
+        }
+        
+        // Check elements on load
+        window.addEventListener('load', checkFade);
+        
+        // Check elements on scroll
+        window.addEventListener('scroll', checkFade);
+    </script>
+</body>
+</html>
+
